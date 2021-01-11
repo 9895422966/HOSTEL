@@ -14,28 +14,20 @@ if (!$conn) {
 }
 // echo 'hi'.$_SESSION['login'];
 
-if(isset($_POST['pay'])){
+if(isset($_POST['add'])){
 	
-$regno=$_SESSION['login'];
-$date=$_POST['date'];
-$amt=$_POST['pay'];
-// $ptype=$_POST['ptype'];
-// echo $ptype;
-$cardno=$_POST['cardno'];
-$cvv=$_POST['cvv'];
-$sql = "INSERT INTO `fee` (`bid`, `regno`, `date`, `amount`, `status`, `ptype`, `cardno`, `cvv`) VALUES (NULL, '$regno', '$date', '$amt', 'paid', 'card', '$cardno', '$cvv');";
+$regno=$_POST['regno'];
+$days=$_POST['days'];
+echo "gfhg".$ptype;
+$sql = "INSERT INTO messfee VALUES (null,$regno,$days);";
 
 if(mysqli_query($conn, $sql))
-  echo '<script>if(!alert("success")){
-	document.location = "feespayment.php";
-  }</script>';
+  echo '<script>alert("success")</script>';
 else
 	// echo '<script>alert("Payment Failed")</script>';
 	echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 
 mysqli_close($conn);
-// header("location:feespayment.php");
-
 }
 ?>
 
@@ -86,7 +78,7 @@ return true;
 				<div class="row">
 					<div class="col-md-12">
 					
-						<h2 class="page-title"> Fees Payment </h2>
+						<h2 class="page-title">Add Mess Fee </h2>
 
 						<div class="row">
 					<div class="col-md-6 col-md-offset-3">
@@ -95,37 +87,10 @@ return true;
 							
 								<form action="" class="mt" method="post">
 									<label for="" class="text-uppercase text-sm">Admission no : </label>
-									<input type="text" placeholder="Admission No" id="regno" name="regno" class="form-control mb" value='<?php echo $_SESSION['login']; ?>' disabled>
-									<label for="" class="text-uppercase text-sm">Date  : </label>
-									<input type="date" placeholder="Date" id="date" name="date" class="form-control mb">
-									<label for="" class="text-uppercase text-sm">Amount : </label>
-									<input type="text" placeholder="Amount" id="amt" name="amt" class="form-control mb" <?php
-									 $id= $_SESSION['login']; 
-									 $sql="select days from messfee where regno=$id";
-										$res = mysqli_query($conn, $sql);
-										$row1 = mysqli_fetch_assoc($res);
-										?> value='<?php
-										echo $row1['days']*200;
-									 ?>' disabled>
-								    <label for="" class="text-uppercase text-sm">Payment type : </label>
-									<input type="text" placeholder="Ptype" id="ptype" name="ptype" value="card" class="form-control mb" disabled>
-									<!-- <select id="ptype" class="form-control mb" name="ptype">
-                                     <option value="card" name="ptype">debit/credit card</option>
-                                     <option value="google pay">google pay</option>
-                                     <option value="netbanking">netbanking</option>                                 
-                                    </select> -->
-									<label for="" class="text-uppercase text-sm">Card no : </label>
-									<input type="text" placeholder="Card no" id="cardno" name="cardno" class="form-control mb">
-									<label for="" class="text-uppercase text-sm">cvv : </label>
-									<input type="text" placeholder="cvv" id="cvv" name="cvv" class="form-control mb">
-									<button type="submit" name="pay" class="btn btn-primary btn-block" value="<?php
-									 $id= $_SESSION['login']; 
-									 $sql="select days from messfee where regno=$id";
-										$res = mysqli_query($conn, $sql);
-										$row1 = mysqli_fetch_assoc($res);
-				
-										echo $row1['days']*200;
-									 ?>" id="pay">Pay</button>
+									<input type="text" placeholder="Admission No" id="regno" name="regno" class="form-control mb">
+									<label for="" class="text-uppercase text-sm">No of days in hostel: </label>
+									<input type="text" placeholder="days" id="days" name="days" class="form-control mb">
+									<input type="submit" name="add" class="btn btn-primary btn-block" value="add" id="add">
 								</form>
 							</div>
 						</div>

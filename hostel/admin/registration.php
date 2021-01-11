@@ -32,9 +32,9 @@ $paddress=$_POST['paddress'];
 $pcity=$_POST['pcity'];
 $pstate=$_POST['pstate'];
 $ppincode=$_POST['ppincode'];
-	$result ="SELECT count(*) FROM userRegistration WHERE email=? || regNo=?";
+	$result ="SELECT count(*) FROM registration WHERE emailid=? || regNo=?";
 		$stmt = $mysqli->prepare($result);
-		$stmt->bind_param('ss',$email,$regno);
+		$stmt->bind_param('ss',$emailid,$regno);
 		$stmt->execute();
 $stmt->bind_result($count);
 $stmt->fetch();
@@ -52,10 +52,10 @@ $stmt->execute();
 $stmt->close();
 
 
-$query1="insert into  userregistration(regNo,firstName,middleName,lastName,gender,contactNo,email,password) values(?,?,?,?,?,?,?,?)";
+/*$query1="insert into  userregistration(regNo,firstName,middleName,lastName,gender,contactNo,email,password) values(?,?,?,?,?,?,?,?)";
 $stmt1= $mysqli->prepare($query1);
 $stmt1->bind_param('sssssiss',$regno,$fname,$mname,$lname,$gender,$contactno,$emailid,$contactno);
-$stmt1->execute();
+$stmt1->execute();*/
 echo"<script>alert('Student Succssfully register');</script>";
 }
 }
@@ -169,7 +169,7 @@ while($row=$res->fetch_object())
 <label class="col-sm-2 control-label">Food Status</label>
 <div class="col-sm-8">
 <input type="radio" value="0" name="foodstatus" checked="checked"> Without Food
-<input type="radio" value="1" name="foodstatus"> With Food(Rs 2000.00 Per Month Extra)
+<input type="radio" value="1" name="foodstatus"> With Food(Rs 200 Per day)
 </div>
 </div>	
 
@@ -224,7 +224,7 @@ while($row=$res->fetch_object())
 </div>
 
 <div class="form-group">
-<label class="col-sm-2 control-label">Registration No : </label>
+<label class="col-sm-2 control-label">Admission No : </label>
 <div class="col-sm-8">
 <input type="text" name="regno" id="regno"  class="form-control" required="required"  onBlur="checkRegnoAvailability()">
 <span id="user-reg-availability" style="font-size:12px;"></span>

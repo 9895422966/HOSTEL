@@ -5,10 +5,6 @@ if(isset($_POST['submit']))
 {
 $regno=$_POST['regno'];
 $fname=$_POST['fname'];
-$mname=$_POST['mname'];
-$lname=$_POST['lname'];
-$gender=$_POST['gender'];
-$contactno=$_POST['contact'];
 $emailid=$_POST['email'];
 $password=$_POST['password'];
 	$result ="SELECT count(*) FROM userRegistration WHERE email=? || regNo=?";
@@ -23,9 +19,9 @@ if($count>0)
 echo"<script>alert('Registration number or email id already registered.');</script>";
 }else{
 
-$query="insert into  userRegistration(regNo,firstName,middleName,lastName,gender,contactNo,email,password) values(?,?,?,?,?,?,?,?)";
+$query="insert into  userRegistration(regNo,username,email,password) values(?,?,?,?)";
 $stmt = $mysqli->prepare($query);
-$rc=$stmt->bind_param('sssssiss',$regno,$fname,$mname,$lname,$gender,$contactno,$emailid,$password);
+$rc=$stmt->bind_param('ssss',$regno,$fname,$emailid,$password);
 $stmt->execute();
 echo"<script>alert('Student Succssfully register');</script>";
 }
@@ -88,7 +84,7 @@ return true;
 										
 
 <div class="form-group">
-<label class="col-sm-2 control-label"> Registration no : </label>
+<label class="col-sm-2 control-label"> Admission no : </label>
 <div class="col-sm-8">
 <input type="text" name="regno" id="regno"  class="form-control" required="required" onBlur="checkRegnoAvailability()">
 <span id="user-reg-availability" style="font-size:12px;"></span>
@@ -97,45 +93,11 @@ return true;
 
 
 <div class="form-group">
-<label class="col-sm-2 control-label">First Name : </label>
+<label class="col-sm-2 control-label">Username : </label>
 <div class="col-sm-8">
 <input type="text" name="fname" id="fname"  class="form-control" required="required" >
 </div>
 </div>
-
-<div class="form-group">
-<label class="col-sm-2 control-label">Middle Name : </label>
-<div class="col-sm-8">
-<input type="text" name="mname" id="mname"  class="form-control">
-</div>
-</div>
-
-<div class="form-group">
-<label class="col-sm-2 control-label">Last Name : </label>
-<div class="col-sm-8">
-<input type="text" name="lname" id="lname"  class="form-control" required="required">
-</div>
-</div>
-
-<div class="form-group">
-<label class="col-sm-2 control-label">Gender : </label>
-<div class="col-sm-8">
-<select name="gender" class="form-control" required="required">
-<option value="">Select Gender</option>
-<option value="male">Male</option>
-<option value="female">Female</option>
-<option value="others">Others</option>
-</select>
-</div>
-</div>
-
-<div class="form-group">
-<label class="col-sm-2 control-label">Contact No : </label>
-<div class="col-sm-8">
-<input type="text" name="contact" id="contact"  class="form-control" required="required">
-</div>
-</div>
-
 
 <div class="form-group">
 <label class="col-sm-2 control-label">Email id: </label>

@@ -14,7 +14,7 @@ $lname=$_POST['lname'];
 $gender=$_POST['gender'];
 $contactno=$_POST['contact'];
 $udate = date('d-m-Y h:i:s', time());
-$query="update  userRegistration set firstName=?,middleName=?,lastName=?,gender=?,contactNo=?,updationDate=? where id=?";
+$query="update  userRegistration set username=?,middleName=?,lastName=?,gender=?,contactNo=?,updationDate=? where id=?";
 $stmt = $mysqli->prepare($query);
 $rc=$stmt->bind_param('ssssisi',$fname,$mname,$lname,$gender,$contactno,$udate,$aid);
 $stmt->execute();
@@ -65,7 +65,7 @@ $udate = date('d-m-Y h:i:s', time());
 	  	?>	
 				<div class="row">
 					<div class="col-md-12">
-						<h2 class="page-title"><?php echo $row->firstName;?>'s&nbsp;Profile </h2>
+						<h2 class="page-title"><?php echo $row->username;?>'s&nbsp;Profile </h2>
 
 						<div class="row">
 							<div class="col-md-12">
@@ -82,7 +82,7 @@ Last Updation date : &nbsp; <?php echo $row->updationDate;?>
 								
 
 <div class="form-group">
-<label class="col-sm-2 control-label"> Registration No : </label>
+<label class="col-sm-2 control-label"> Admission No : </label>
 <div class="col-sm-8">
 <input type="text" name="regno" id="regno"  class="form-control" required="required" value="<?php echo $row->regNo;?>" readonly="true">
 </div>
@@ -92,7 +92,7 @@ Last Updation date : &nbsp; <?php echo $row->updationDate;?>
 <div class="form-group">
 <label class="col-sm-2 control-label">First Name : </label>
 <div class="col-sm-8">
-<input type="text" name="fname" id="fname"  class="form-control" value="<?php echo $row->firstName;?>"   required="required" >
+<input type="text" name="fname" id="fname"  class="form-control" value="<?php echo $row->username;?>"   required="required" >
 </div>
 </div>
 

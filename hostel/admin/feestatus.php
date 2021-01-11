@@ -58,9 +58,9 @@ popUpWin = open(URLStr,'popUpWin', 'toolbar=no,location=no,directories=no,status
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-12">
-						<h2 class="page-title" style="margin-top:4%">Manage Registerd Students</h2>
+						<h2 class="page-title" style="margin-top:4%">Fee status</h2>
 						<div class="panel panel-default">
-							<div class="panel-heading">All Room Details</div>
+							
 							<div class="panel-body">
 								<table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
 									<thead>
@@ -68,17 +68,18 @@ popUpWin = open(URLStr,'popUpWin', 'toolbar=no,location=no,directories=no,status
 											<th>Sno.</th>
 											<th>Student Name</th>
 											<th>Admission no</th>
-											<th>Contact no </th>
 											<th>room no  </th>
-											<th>no of beds </th>
-											<th>Staying From </th>
-											<th>Action</th>
+											<th>date</th>
+                                            <th>Amount </th>
+											<th>feestatus</th>
 										</tr>
 									</thead>
 									<tbody>
 <?php	
 $aid=$_SESSION['id'];
-$ret="select * from registration";
+// $ret="SELECT concat(firstName,' ',lastname) as name,fee.regno,roomno,date,amount,status FROM registration join fee  on registration.regno=fee.regno";
+$ret="SELECT distinct concat(firstName,' ',lastname) as name,registration.regno,roomno,ifnull(date,'Not Paid') as date,ifnull(amount,0) as amount,ifnull(status ,'Not Paid') as status FROM registration left join fee  on registration.regno=fee.regno";
+
 $stmt= $mysqli->prepare($ret) ;
 //$stmt->bind_param('i',$aid);
 $stmt->execute() ;//ok
@@ -88,12 +89,12 @@ while($row=$res->fetch_object())
 	  {
 	  	?>
 <tr><td><?php echo $cnt;;?></td>
-<td><?php echo $row->firstName;?><?php echo $row->middleName;?><?php echo $row->lastName;?></td>
+<td><?php echo $row->name;?></td>
 <td><?php echo $row->regno;?></td>
-<td><?php echo $row->contactno;?></td>
 <td><?php echo $row->roomno;?></td>
-<td><?php echo $row->beds;?></td>
-<td><?php echo $row->stayfrom;?></td>
+<td><?php echo $row->date;?></td>
+<td><?php echo $row->amount;?></td>
+<td><?php echo $row->status;?></td>
 <td>
 <a href="student-details.php?regno=<?php echo $row->regno;?>" title="View Full Details"><i class="fa fa-desktop"></i></a>&nbsp;&nbsp;
 <a href="manage-students.php?del=<?php echo $row->regno;?>" title="Delete Record" onclick="return confirm('Do you want to delete');"><i class="fa fa-close"></i></a></td>

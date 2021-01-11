@@ -111,12 +111,15 @@ echo "With Food";
 </tr>
 
 <tr><th>Hostel Fee:</th>
-<td><?php echo $hf=$dr*$fpm?></td>
-<th>Food Fee:</th>
+<td><?php echo $hf=$fpm?></td>
+<th>Mess Fee:</th>
 <td colspan="3"><?php 
 if($row->foodstatus==1)
 { 
-echo $ff=(2000*$dr);
+	$sql="select days from messfee where regno=$aid";
+	$res = mysqli_query($mysqli, $sql);
+	$row1 = mysqli_fetch_assoc($res);
+echo $ff=(200*$row1['days']);
 } else { 
 echo $ff=0;
 echo "<span style='padding-left:2%; color:red;'>(You booked hostel without food).<span>";

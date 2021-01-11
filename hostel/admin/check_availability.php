@@ -58,7 +58,7 @@ echo "<span style='color:red'> Email already exist. Please try again.</span>";
 if(!empty($_POST["regno"])) {
 	$regno= $_POST["regno"];
 
-		$result ="SELECT count(*) FROM userRegistration WHERE regNo=?";
+		$result ="SELECT count(*) FROM registration WHERE regNo=?";
 		$stmt = $mysqli->prepare($result);
 		$stmt->bind_param('s',$regno);
 		$stmt->execute();

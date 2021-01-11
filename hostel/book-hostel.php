@@ -176,7 +176,7 @@ while($row=$res->fetch_object())
 <label class="col-sm-2 control-label">Food Status</label>
 <div class="col-sm-8">
 <input type="radio" value="0" name="foodstatus" checked="checked"> Without Food
-<input type="radio" value="1" name="foodstatus"> With Food(Rs 2000.00 Per Month Extra)
+<input type="radio" value="1" name="foodstatus"> With Food(Rs 200.00 Per Day)
 </div>
 </div>	
 
@@ -244,7 +244,7 @@ $aid=$_SESSION['id'];
 	  	?>
 
 <div class="form-group">
-<label class="col-sm-2 control-label">Registration No : </label>
+<label class="col-sm-2 control-label">Admission no : </label>
 <div class="col-sm-8">
 <input type="text" name="regno" id="regno"  class="form-control" value="<?php echo $row->regNo;?>" readonly >
 </div>
@@ -254,35 +254,35 @@ $aid=$_SESSION['id'];
 <div class="form-group">
 <label class="col-sm-2 control-label">First Name : </label>
 <div class="col-sm-8">
-<input type="text" name="fname" id="fname"  class="form-control" value="<?php echo $row->firstName;?>" readonly>
+<input type="text" name="fname" id="fname"  class="form-control" value="<?php echo $row->username;?>" readonly>
 </div>
 </div>
 
 <div class="form-group">
 <label class="col-sm-2 control-label">Middle Name : </label>
 <div class="col-sm-8">
-<input type="text" name="mname" id="mname"  class="form-control" value="<?php echo $row->middleName;?>"  readonly>
+<input type="text" name="mname" id="mname"  class="form-control" required="required">
 </div>
 </div>
 
 <div class="form-group">
 <label class="col-sm-2 control-label">Last Name : </label>
 <div class="col-sm-8">
-<input type="text" name="lname" id="lname"  class="form-control" value="<?php echo $row->lastName;?>" readonly>
+<input type="text" name="lname"   class="form-control" required="required">
 </div>
 </div>
 
 <div class="form-group">
 <label class="col-sm-2 control-label">Gender : </label>
 <div class="col-sm-8">
-<input type="text" name="gender" value="<?php echo $row->gender;?>" class="form-control" readonly>
+<input type="text" name="gender"  class="form-control" >
 </div>
 </div>
 
 <div class="form-group">
 <label class="col-sm-2 control-label">Contact No : </label>
 <div class="col-sm-8">
-<input type="text" name="contact" id="contact" value="<?php echo $row->contactNo;?>"  class="form-control" readonly>
+<input type="text" name="contact" id="contact"   class="form-control" >
 </div>
 </div>
 
